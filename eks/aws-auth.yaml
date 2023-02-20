@@ -4,6 +4,13 @@ metadata:
   name: aws-auth
   namespace: kube-system
 data:
+  mapRoles: |
+    - rolearn: arn:aws:iam::960116060562:role/AWSEKSNodeRole
+      username: system:node:{{EC2PrivateDNSName}}
+      groups:
+          - system:bootstrappers
+          - system:nodes
+          - system:masters
   mapUsers: |
     - userarn: arn:aws:iam::960116060562:user/github-ci
       username: github-ci
